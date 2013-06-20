@@ -6,7 +6,10 @@
 	"description": "Opens a new tab for instagram photos with the raw image",
 
 	"page_action": {
-		"default_title": "Tabagram"
+		"default_title": "Tabagram",
+		"default_icon": {
+			"38": "icon38.png"
+		}
 	},
 
 	"background": {
