@@ -1,8 +1,7 @@
-var igPhotoPagePattern = /instagram\.com\/p\/(\w+)\//
+var igPhotoPagePattern = /instagram\.com\/p\/(.+)\//
 
 function showImage(url, tab) {
 	if (url != null) {
-		console.log("Opening tab with url " + url)
 		chrome.tabs.update(tab.id, {url:url})
 	}
 }
@@ -11,7 +10,9 @@ function showIfValid(tabId, changeInfo, tab) {
 	if (igPhotoPagePattern.test(tab.url)) {
 		chrome.pageAction.onClicked.addListener(function(tab) {
 			chrome.tabs.sendMessage(tab.id, {msg:"igphoto"}, function(data) {
-				showImage(data.url, tab)
+				if (data !== undefined) {
+					showImage(data.url, tab)
+				}
 			})
 		})
 
